@@ -12,8 +12,6 @@ Course: Integrative Programming 2 (API Backend Development)
 
 | MEMBER | ROLE |
 
-| ------ | ---- |
-
 | John Ronel D. Malunes | Backend Developer |
 
 | Nhadine Gutierrez | Frontend Developer |
