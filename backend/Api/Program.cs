@@ -35,14 +35,11 @@ builder.Services.AddOpenApi(options =>
 
 var app = builder.Build();
 
-// Seed data
+// Apply migrations (and seed data later)
 using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-
-    // dbContext.<Entities>.AddRange(...);
-
-    dbContext.SaveChanges();
+    dbContext.Database.Migrate();
 }
 
 // Configure the HTTP request pipeline
