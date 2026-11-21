@@ -1,0 +1,19 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f4f6fa;
+  font-family: Arial, sans-serif;
+}
+
+.card {
+  border: none;
+  border-radius: 12px;
+}
+
+button {
+  border-radius: 8px !important;
+}
