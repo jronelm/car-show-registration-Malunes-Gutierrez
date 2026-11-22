@@ -8,6 +8,7 @@ using Application.Features.Registrations.CreateRegistration;
 using Domain.Common;
 using Application.Features.Registrations.GetRegistrations;
 using Application.Features.Registrations.GetRegistrationById;
+using Application.Features.Registrations.GetRegistrationSummary;
 
 public static class RegistrationEndpoints
 {
@@ -62,5 +63,18 @@ public static class RegistrationEndpoints
         })
             .Produces<RegistrationResponse>()
             .ProducesProblem(StatusCodes.Status404NotFound);
+
+        // GET /api/registrations/summary
+        group.MapGet("/summary", async (
+                IQueryHandler<GetRegistrationSummaryQuery, Result<GetRegistrationSummaryResponse>> handler,
+                CancellationToken cancellationToken) =>
+        {
+            var result = await handler.HandleAsync(new GetRegistrationSummaryQuery(), cancellationToken);
+
+            return result.IsSuccess
+                ? Results.Ok(result.Value)
+                : result.ToProblemDetails();
+        })
+            .Produces<GetRegistrationSummaryResponse>();
     }
 }

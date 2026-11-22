@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Scalar.AspNetCore;
 using Application.Features.Registrations.GetRegistrations;
 using Application.Features.Registrations.GetRegistrationById;
+using Application.Features.Registrations.GetRegistrationSummary;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,6 +36,10 @@ builder.Services.AddScoped<
 builder.Services.AddScoped<
     IQueryHandler<GetRegistrationByIdQuery, Result<RegistrationResponse>>,
     GetRegistrationByIdQueryHandler>();
+
+builder.Services.AddScoped<
+    IQueryHandler<GetRegistrationSummaryQuery, Result<GetRegistrationSummaryResponse>>,
+    GetRegistrationSummaryQueryHandler>();
 
 // JSON: enums are sent and received as strings ("Competitor", not 1)
 builder.Services.ConfigureHttpJsonOptions(options =>
