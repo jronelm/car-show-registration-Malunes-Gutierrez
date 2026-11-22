@@ -73,6 +73,13 @@ using (var scope = app.Services.CreateScope())
     dbContext.Database.Migrate();
 }
 
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    dbContext.Database.Migrate();
+    DbSeeder.Seed(dbContext);
+}
+
 app.UseCors();
 
 // Configure the HTTP request pipeline
