@@ -34,6 +34,10 @@ public sealed class AppDbContext : DbContext, IAppDbContext
             // One car = one registration, and numbers must never repeat
             entity.HasIndex(e => e.PlateNumber).IsUnique();
             entity.HasIndex(e => e.RegistrationNumber).IsUnique();
+
+            // SQLite does not keep the "UTC" marker, so mark dates as UTC when reading
+            entity.Property(e => e.RegistrationDate)
+                .HasConversion(v => v, v => DateTime.SpecifyKind(v, DateTimeKind.Utc));
         });
     }
 }
