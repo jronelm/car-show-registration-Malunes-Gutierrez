@@ -1,4 +1,4 @@
-namespace Api.Common.Extensions;
+﻿namespace Api.Common.Extensions;
 
 using Domain.Common;
 using Microsoft.AspNetCore.Mvc;
